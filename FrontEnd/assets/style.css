@@ -3,19 +3,87 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -23,46 +91,68 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /** end reset css**/
 body {
 	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
+	margin: auto;
+	font-family: 'Work Sans';
 	font-size: 14px;
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
+
 section {
 	margin: 50px 0
 }
 
-h1{
+h1 {
 	display: flex;
 	flex-direction: column;
 	font-family: 'Syne';
@@ -71,25 +161,27 @@ h1{
 	color: #B1663C
 }
 
-h1 > span {
+h1>span {
 	font-family: 'Work Sans';
-	font-size:10px;
+	font-size: 10px;
 	letter-spacing: 0.1em;
-;
+	;
 }
 
-h2{
+h2 {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
 	color: #1D6154
 }
+
 nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
 
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
@@ -98,13 +190,16 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
 }
+
 #introduction figure {
 	flex: 1
 }
+
 #introduction img {
 	display: block;
 	margin: auto;
@@ -114,6 +209,7 @@ li:hover {
 #introduction article {
 	flex: 1
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -121,11 +217,13 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
-.gallery {
+
+#gallery {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -133,24 +231,28 @@ li:hover {
 	grid-row-gap: 20px;
 }
 
-.gallery img {
+#gallery img {
 	width: 100%;
 
 }
+
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
-#contact > * {
+
+#contact>* {
 	text-align: center;
 
 }
-#contact h2{
+
+#contact h2 {
 	margin-bottom: 20px;
 }
+
 #contact form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
@@ -161,23 +263,25 @@ margin: auto;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+
 #contact label {
 	margin: 2em 0 1em 0;
 }
+
 #contact textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin : 2em auto ;
+	margin: 2em auto;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 
 footer nav ul {
@@ -186,3 +290,412 @@ footer nav ul {
 	margin: 2em
 }
 
+#filters {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 30px;
+}
+
+button {
+	font-family: syne;
+	color: #1D6154;
+	border-color: #1D6154;
+	border: #1D6154 solid;
+	border-radius: 60px;
+	padding: 10px 20px;
+	font-size: 16px;
+	margin: 0 10px;
+	background-color: #fff;
+}
+
+button:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+/* LOGIN */
+#login {
+	display: flex;
+	/* Utiliza flexbox para centrar el contenido */
+	flex-direction: column;
+	/* Coloca los elementos en columna */
+	justify-content: center;
+	/* Centra verticalmente el contenido */
+	align-items: center;
+	/* Centra horizontalmente el contenido */
+	height: calc(100vh - 100px);
+	/* Altura total menos el margen del header */
+	margin: 50px 0;
+	/* Espaciado superior e inferior */
+}
+
+#login h1 {
+	color: #1D6154;
+	/* Color del H1 */
+	font-family: 'Syne';
+	/* Fuente para el H1 */
+	font-size: 30px;
+	/* Tamaño del H1 */
+	font-weight: 700;
+	/* Peso del H1 */
+	line-height: 36px;
+	/* Altura de línea del H1 */
+	margin-bottom: 20px;
+	/* Espacio debajo del H1 */
+}
+
+.login form {
+	text-align: left;
+	/* Alinear texto a la izquierda dentro del formulario */
+	max-width: 300px;
+	/* Ancho máximo para el formulario */
+	width: 100%;
+	/* Ancho del formulario al 100% */
+}
+
+#login label {
+	display: block;
+	/* Cada etiqueta en una nueva línea */
+	margin: 10px 0 5px;
+	/* Espaciado alrededor de las etiquetas */
+	font-family: 'Work Sans';
+	/* Fuente para las etiquetas */
+	font-weight: 500;
+	/* Peso de la fuente */
+}
+
+#login input {
+	width: 379px;
+	/* Ancho del input al 100% */
+	height: 51px;
+	/* Altura de los inputs */
+	font-size: 14px;
+	/* Tamaño de la fuente */
+	font-family: 'Work Sans';
+	/* Fuente para los inputs */
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+	/* Sombra */
+	margin-bottom: 20px;
+	/* Espacio entre inputs */
+	border: none;
+	/* Sin borde */
+}
+
+#login button {
+	font-family: 'Syne';
+	/* Fuente para el botón */
+	font-weight: 700;
+	/* Peso del botón */
+	color: white;
+	/* Color del texto del botón */
+	background-color: #1D6154;
+	/* Color de fondo del botón */
+	width: 180px;
+	/* Ancho del botón */
+	border-radius: 60px;
+	/* Bordes redondeados */
+	padding: 10px;
+	/* Espaciado interno del botón */
+	cursor: pointer;
+	/* Cambia el cursor al pasar sobre el botón */
+	margin-top: 20px;
+	/* Margen superior para separar del formulario */
+	align-self: flex-start;
+	/* Alinea el botón a la izquierda */
+	margin: 0px 70px;
+}
+
+#login .forgot-password {
+	margin-top: 10px;
+	/* Espacio superior para separar del botón */
+	font-family: 'Work Sans';
+	font-size: 14px;
+	/* Tamaño de la fuente */
+	cursor: pointer;
+	/* Cambia el cursor al pasar sobre el texto */
+	text-align: center;
+	/* Centra el texto */
+}
+
+
+#login .forgot-password:hover {
+	text-decoration: underline;
+	/* Subrayado al pasar el mouse */
+
+}
+
+body {
+	background: #FFFEF8;
+}
+
+#login {
+	display: flex;
+	flex-direction: column;
+	/* Coloca los elementos en columna */
+	justify-content: center;
+	/* Centra verticalmente el contenido */
+	align-items: center;
+	/* Centra horizontalmente el contenido */
+	height: calc(100vh - 100px);
+	/* Altura total menos el margen del header */
+	margin: 50px 0;
+	/* Espaciado superior e inferior */
+}
+
+#login form {
+	text-align: left;
+	/* Alinear texto a la izquierda dentro del formulario */
+	max-width: 300px;
+	/* Ancho máximo para el formulario */
+	width: 100%;
+	/* Ancho del formulario al 100% */
+	display: flex;
+	/* Flex para alinear los elementos en el formulario */
+	flex-direction: column;
+	/* Coloca los elementos en columna */
+}
+
+#login button {
+	align-self: center;
+	/* Alinea el botón al centro */
+	margin-top: 15px;
+	padding: 5px;
+	width: 179px;
+}
+
+header h1 a {
+	color: inherit;
+}
+
+header h1 a:visited,
+header h1 a:hover,
+header h1 a:active {
+	color: inherit;
+	/* Mantiene el color del enlace en todos los estados */
+}
+
+#modifier-btn {
+	display: inline-flex;
+	/* Coloca la imagen y el texto juntos */
+	align-items: center;
+	/* Centra verticalmente los elementos */
+	font-family: work sans;
+	color: black;
+	background-color: #fff;
+	font-size: 14px;
+	margin: 0 10px;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+	/* Cambia el cursor al pasar el mouse */
+}
+
+.title-row {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	gap: 10px;
+}
+
+.title-row img {
+	width: auto;
+	height: auto;
+	margin-right: 5px;
+	/* Espacio entre la imagen y el texto */
+}
+
+.title-row h2 {
+	margin: 0;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #0000004D;
+	display: flex;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.modal--show {
+	opacity: 1;
+	pointer-events: unset;
+}
+
+.modal-container {
+	margin: auto;
+	width: 90%;
+	max-width: 630px;
+	height: 100%;
+	max-height: 670px;
+	border-radius: 10px;
+	opacity: 0px;
+	background: #fff;
+	display: grid;
+	place-items: center;
+	position: relative;
+}
+
+#modal-gallery {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	/* 5 imágenes por fila */
+	grid-gap: 10px;
+	/* Espacio entre las imágenes */
+	justify-items: center;
+	/* Centrar las imágenes dentro de cada celda */
+	margin: 20px;
+	/* Espaciado interno */
+	border-bottom: 1px solid #B3B3B3;
+	padding-bottom: 40px;
+}
+
+
+#modal-gallery img {
+	width: 76.86px;
+	height: 102.57px;
+}
+
+#galerie-label {
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30.5px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	color: black;
+
+}
+
+#add-photo {
+	margin-bottom: 30px;
+	margin-left: 125px;
+	width: 237px;
+}
+
+.button-modal {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: none;
+	color: black;
+}
+
+#button-modal:hover {
+	background-color: white;
+	color: #1D6154;
+}
+
+.modal-image-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.modal-image-wrapper img {
+	display: block;
+	width: 100%;
+}
+
+.trash-icon {
+	position: absolute;
+	width: 17px;
+	height: 17px;
+	top: 5px;
+	right: 5px;
+	color: white;
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 9px;
+	cursor: pointer;
+}
+
+#retour-modifier {
+	position: absolute;
+	border: none;
+	top: 10px;
+	left: 10px;
+	cursor: pointer;
+}
+
+.background-photo {
+	width: 420px;
+	height: 169px;
+	margin: 10px auto;
+	background-color: #E8F1F6;
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.background-photo img {
+	width: 76px;
+	height: 76px;
+}
+
+.background-photo button {
+	background-color: #CBD6DC;
+	color: #306685;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	width: 173PX;
+	height: 36PX;
+	font-size: 12px;
+}
+
+#jpg-size {
+	font-size: 10px;
+}
+
+#form-ajout {
+	display: inline-grid;
+	gap: 30px;
+	margin-bottom: 40px;
+	width: 420px;
+}
+
+#titre {
+	margin-bottom: -15px;
+}
+
+#text-titre {
+	height: 45px;
+}
+
+#categorie-text {
+	height: 51px;
+}
+
+.container-form {
+	padding: 20px;
+}
+
+#ajout-photo {
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30.5px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	color: black;
+}
+
+#padding {
+	padding: 20px;
+}
+
+#input-container {
+	border-bottom: 1px solid #B3B3B3;
+	;
+}
