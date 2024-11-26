@@ -313,163 +313,318 @@ button:hover {
 	color: white;
 }
 
+#filters button.active {
+	background-color: #1D6154;
+	color: white;
+}
+
 /* LOGIN */
 #login {
 	display: flex;
-	/* Utiliza flexbox para centrar el contenido */
 	flex-direction: column;
-	/* Coloca los elementos en columna */
 	justify-content: center;
-	/* Centra verticalmente el contenido */
 	align-items: center;
-	/* Centra horizontalmente el contenido */
 	height: calc(100vh - 100px);
-	/* Altura total menos el margen del header */
 	margin: 50px 0;
-	/* Espaciado superior e inferior */
 }
 
 #login h1 {
 	color: #1D6154;
-	/* Color del H1 */
 	font-family: 'Syne';
-	/* Fuente para el H1 */
 	font-size: 30px;
-	/* Tamaño del H1 */
 	font-weight: 700;
-	/* Peso del H1 */
 	line-height: 36px;
-	/* Altura de línea del H1 */
 	margin-bottom: 20px;
-	/* Espacio debajo del H1 */
 }
 
 .login form {
 	text-align: left;
-	/* Alinear texto a la izquierda dentro del formulario */
 	max-width: 300px;
-	/* Ancho máximo para el formulario */
 	width: 100%;
-	/* Ancho del formulario al 100% */
+}
+
+#loginForm {
+	display: grid;
 }
 
 #login label {
 	display: block;
-	/* Cada etiqueta en una nueva línea */
 	margin: 10px 0 5px;
-	/* Espaciado alrededor de las etiquetas */
 	font-family: 'Work Sans';
-	/* Fuente para las etiquetas */
 	font-weight: 500;
-	/* Peso de la fuente */
 }
 
 #login input {
 	width: 379px;
-	/* Ancho del input al 100% */
 	height: 51px;
-	/* Altura de los inputs */
 	font-size: 14px;
-	/* Tamaño de la fuente */
 	font-family: 'Work Sans';
-	/* Fuente para los inputs */
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
-	/* Sombra */
 	margin-bottom: 20px;
-	/* Espacio entre inputs */
 	border: none;
-	/* Sin borde */
 }
 
 #login button {
 	font-family: 'Syne';
-	/* Fuente para el botón */
 	font-weight: 700;
-	/* Peso del botón */
 	color: white;
-	/* Color del texto del botón */
 	background-color: #1D6154;
-	/* Color de fondo del botón */
 	width: 180px;
-	/* Ancho del botón */
 	border-radius: 60px;
-	/* Bordes redondeados */
 	padding: 10px;
-	/* Espaciado interno del botón */
 	cursor: pointer;
-	/* Cambia el cursor al pasar sobre el botón */
 	margin-top: 20px;
-	/* Margen superior para separar del formulario */
 	align-self: flex-start;
-	/* Alinea el botón a la izquierda */
-	margin: 0px 70px;
+	margin: 0px 100px;
 }
 
 #login .forgot-password {
 	margin-top: 10px;
-	/* Espacio superior para separar del botón */
 	font-family: 'Work Sans';
 	font-size: 14px;
-	/* Tamaño de la fuente */
 	cursor: pointer;
-	/* Cambia el cursor al pasar sobre el texto */
 	text-align: center;
-	/* Centra el texto */
 }
-
 
 #login .forgot-password:hover {
 	text-decoration: underline;
-	/* Subrayado al pasar el mouse */
-
 }
 
 body {
 	background: #FFFEF8;
 }
 
-#login {
-	display: flex;
-	flex-direction: column;
-	/* Coloca los elementos en columna */
-	justify-content: center;
-	/* Centra verticalmente el contenido */
+#modifier-btn {
+	display: inline-flex;
 	align-items: center;
-	/* Centra horizontalmente el contenido */
-	height: calc(100vh - 100px);
-	/* Altura total menos el margen del header */
-	margin: 50px 0;
-	/* Espaciado superior e inferior */
+	font-family: work sans;
+	color: black;
+	background-color: #fff;
+	font-size: 14px;
+	margin: 0 10px;
+	padding: 0;
+	border: none;
+	cursor: pointer;
 }
 
-#login form {
-	text-align: left;
-	/* Alinear texto a la izquierda dentro del formulario */
-	max-width: 300px;
-	/* Ancho máximo para el formulario */
-	width: 100%;
-	/* Ancho del formulario al 100% */
+.title-row {
 	display: flex;
-	/* Flex para alinear los elementos en el formulario */
+	align-items: baseline;
+	justify-content: center;
+	gap: 10px;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #0000004D;
+	display: flex;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.modal--show {
+	opacity: 1;
+	pointer-events: unset;
+	height: 100%;
+}
+
+.modal-container {
+	margin: auto;
+	width: 90%;
+	max-width: 630px;
+	height: 100%;
+	max-height: 670px;
+	border-radius: 10px;
+	background: #fff;
+	display: grid;
+	place-items: center;
+	position: relative;
+}
+
+#modal-gallery {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 10px;
+	justify-items: center;
+	margin: 20px;
+	border-bottom: 1px solid #B3B3B3;
+	padding-bottom: 40px;
+}
+
+#modal-gallery img {
+	width: 76.86px;
+	height: 102.57px;
+}
+
+#galerie-label {
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30.5px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	color: black;
+}
+
+#add-photo {
+	margin-bottom: 30px;
+	margin-left: 120px;
+	width: 237px;
+}
+
+.button-modal {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border: none;
+	color: black;
+}
+
+#button-modal:hover {
+	background-color: white;
+	color: #1D6154;
+}
+
+.modal-image-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.modal-image-wrapper img {
+	display: block;
+	width: 100%;
+}
+
+.trash-icon {
+	position: absolute;
+	width: 17px;
+	height: 17px;
+	top: 5px;
+	right: 5px;
+	color: white;
+	background-color: black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 9px;
+	cursor: pointer;
+}
+
+#retour-modifier {
+	position: absolute;
+	border: none;
+	top: 10px;
+	left: 10px;
+	cursor: pointer;
+}
+
+.background-photo {
+	width: 420px;
+	height: 169px;
+	margin: 10px auto;
+	background-color: #E8F1F6;
+	position: relative;
+
+	display: flex;
 	flex-direction: column;
-	/* Coloca los elementos en columna */
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
 }
 
-#login button {
-	align-self: center;
-	/* Alinea el botón al centro */
-	margin-top: 15px;
-	padding: 5px;
-	width: 179px;
+.background-photo img {
+	width: 76px;
+	height: 76px;
 }
 
-header h1 a {
-	color: inherit;
+.background-photo button {
+	background-color: #CBD6DC;
+	color: #306685;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	width: 173PX;
+	height: 36PX;
+	font-size: 12px;
 }
 
-header h1 a:visited,
-header h1 a:hover,
-header h1 a:active {
-	color: inherit;
-	/* Mantiene el color del enlace en todos los estados */
+#jpg-size {
+	font-size: 10px;
+}
+
+#form-ajout {
+	display: inline-grid;
+	gap: 30px;
+	margin-bottom: 40px;
+	width: 420px;
+}
+
+#titre {
+	margin-bottom: -15px;
+}
+
+#text-titre {
+	height: 45px;
+}
+
+#categorie-text {
+	height: 51px;
+}
+
+.container-form {
+	padding: 20px;
+	margin-top: 60px;
+}
+
+.ajout-photo {
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30.5px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	color: black;
+}
+
+#padding {
+	padding: 20px;
+}
+
+#input-container {
+	border-bottom: 1px solid #B3B3B3;
+	display: contents;
+	box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+a:-webkit-any-link {
+	color: black;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+header h1>a {
+	color: #B1663C !important;
+	text-decoration: none;
+}
+
+#text-titre #categorie-text {
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16.42px;
+	text-align: left;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+.custom-preview {
+	width: 129px !important;
+	height: 169px !important;
 }

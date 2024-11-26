@@ -22,7 +22,7 @@
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li><a href="login.html">login</a></li>
+				<li><a href="login.html" id="loginLogout">login</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -46,14 +46,19 @@
 		<section id="portfolio">
 			<div class="title-row">
 				<h2>Mes Projets</h2>
+				<div id="modifier-btn">
+					<img src="assets/icons/pen-to-square-regular(1).svg" alt="button modal">
+					<span>modifer</span>
+				</div>
 			</div>
 			</div>
 			<div id="filters">
-				<button id="filter-all">Tous</button>
-				<button id="filter-objets">Objets</button>
-				<button id="filter-appartements">Appartements</button>
-				<button id="filter-hotels">Hotels & restaurants</button>
+				<button data-category="all" class="active">Tous</button>
+				<button data-category="1">Objets</button>
+				<button data-category="2">Appartements</button>
+				<button data-category="3">Hôtels & Restaurants</button>
 			</div>
+
 			<div id="gallery">
 			</div>
 		</section>
@@ -78,6 +83,49 @@
 			</ul>
 		</nav>
 	</footer>
+	<section class="modal" id="modal-modifier">
+		<div class="modal-container">
+			<button class="button-modal" id="modal-close-modifier"><i class="fa-solid fa-xmark"></i></button>
+			<div class="container-form">
+				<h2 id="galerie-label">Galerie de photo</h2>
+				<div id="modal-gallery">
+				</div>
+				<button id="add-photo"><span>Ajouter une photo</span></button>
+			</div>
+		</div>
+	</section>
+
+	<section class="modal" id="modal-ajout">
+		<div class="modal-container">
+			<button id="retour-modifier"><i class="fa-solid fa-arrow-left"></i></button>
+			<button class="button-modal" id="modal-close-ajout"><i class="fa-solid fa-xmark"></i></button>
+			<div id="container-form">
+				<h2 class="ajout-photo">Ajout photo</h2>
+				<div class="background-photo">
+					<img src="/FrontEnd/assets/icons/picture-svgrepo-com.svg" alt="picture">
+					<button type="button" id="upload-button"><span>+ Ajouter une photo</span></button>
+					<span id="jpg-size">jpg; png : 4mo max</span>
+					<input type="file" id="file-input" accept="image/*" style="display: none;" required>
+					<div id="image-preview" class="image-preview"></div>
+				</div>
+
+				<form action="/submit-form" method="post" id="form-ajout">
+					<div id="input-container">
+						<label for="titre" id="titre">Titre</label>
+						<input type="text" id="text-titre" name="titre" required>
+						<label for="categorie">Categorie</label>
+						<select id="categorie-text" name="categorie" required>
+							<option value="1">Objets</option>
+							<option value="2">Appartements</option>
+							<option value="3">Hotels & restaurants</option>
+						</select>
+					</div>
+					<button id="valider" type="submit"><span>Valider</span></button>
+				</form>
+			</div>
+		</div>
+	</section>
+
 
 	<script src="/FrontEnd/js/gallery.js"></script>
 </body>
