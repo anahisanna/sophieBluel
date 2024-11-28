@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             return response.json();
         })
-        .then(data => { //Reçoit les données JSON et les passe à la prochaine étape pour un traitement supplémentaire.
+        .then(data => {
             const gallery = document.getElementById("gallery");
             const modalGallery = document.getElementById("modal-gallery");
 
@@ -179,18 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 .catch(() => alert("Informations utilisateur/mot de passe incorrectes"));
         });
     }
-    authentification(); // Appel initial pour configurer les éléments
-    const loginLogout = document.getElementById("loginLogout");
-    if (localStorage.getItem("authToken")) {
-        loginLogout.textContent = "logout";
-        loginLogout.href = "#";
-        loginLogout.addEventListener("click", () => {
-            localStorage.removeItem("authToken");
-            loginLogout.textContent = "login";
-            loginLogout.href = "login.html";
-            alert("Vous êtes déconnecté");
-        });
-    }
 
     // Vérifier l'authentification
     const isAuthenticated = !!localStorage.getItem("authToken");
@@ -208,6 +196,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    authentification(); // Appel initial pour configurer les éléments
+    const loginLogout = document.getElementById("loginLogout");
+    if (localStorage.getItem("authToken")) {
+        loginLogout.textContent = "logout";
+        loginLogout.href = "#";
+        loginLogout.addEventListener("click", () => {
+            localStorage.removeItem("authToken");
+            loginLogout.textContent = "login";
+            loginLogout.href = "login.html";
+            alert("Vous êtes déconnecté");
+        });
+    }
 
     // Téléchargement de photo
     const fileInput = document.getElementById("file-input");
