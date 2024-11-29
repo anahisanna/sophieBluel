@@ -628,3 +628,39 @@ header h1>a {
 	width: 129px !important;
 	height: 169px !important;
 }
+
+#admin-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 59px;
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 19px;
+	z-index: 1000;
+}
+
+
+#admin-bar.hidden {
+	display: none;
+}
+
+#admin-bar img {
+	width: 20px;
+	height: 20px;
+}
+
+#admin-bar p {
+	margin: 0;
+}
+
+header.with-admin-bar {
+	margin-top: 100px;
+}

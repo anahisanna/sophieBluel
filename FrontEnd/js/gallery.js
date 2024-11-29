@@ -67,6 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 addDeleteEventListeners();
             };
 
+            // Barre edition
+            const adminBar = document.getElementById("admin-bar");
+            const header = document.querySelector("header");
+            const isAuthenticated = !!localStorage.getItem("authToken");
+
+            if (isAuthenticated) {
+                adminBar.classList.remove("hidden");
+                header.classList.add("with-admin-bar");
+            } else {
+                header.classList.remove("with-admin-bar");
+            }
+
             // Ajouter une fonctionnalité de suppression pour la modale
             const addDeleteEventListeners = () => {
                 const trashIcons = document.querySelectorAll(".trash-icon");
