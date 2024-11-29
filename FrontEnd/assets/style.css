@@ -475,6 +475,9 @@ body {
 	margin-bottom: 30px;
 	margin-left: 120px;
 	width: 237px;
+	background-color: #1D6154;
+	color: white;
+	cursor: pointer;
 }
 
 .button-modal {
@@ -529,7 +532,6 @@ body {
 	margin: 10px auto;
 	background-color: #E8F1F6;
 	position: relative;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -551,6 +553,18 @@ body {
 	width: 173PX;
 	height: 36PX;
 	font-size: 12px;
+}
+
+#valider {
+	background-color: #B3B3B3;
+	color: white;
+	border-color: #B3B3B3;
+	cursor: not-allowed;
+}
+
+#valider.enabled {
+	background-color: #1D6154;
+	cursor: pointer;
 }
 
 #jpg-size {
