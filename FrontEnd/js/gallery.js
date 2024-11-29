@@ -252,11 +252,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ajouter un nouveau travail
     const formAjout = document.getElementById("form-ajout");
+    const validerButton = document.getElementById("valider");
+    const titreInput = document.getElementById("text-titre");
+    const categorieInput = document.getElementById("categorie-text");
+
     if (formAjout) {
+        const validateForm = () => {
+            const isTitleValid = titreInput.value.trim() !== ""; // Título no vacío
+            const isCategoryValid = categorieInput.value !== ""; // Categoría seleccionada
+            const isFileValid = fileInput.files.length > 0; // Archivo seleccionado
+
+            if (isTitleValid && isCategoryValid && isFileValid) {
+                validerButton.disabled = false; // Habilita el botón
+                validerButton.classList.add("enabled"); // Cambia el color
+            } else {
+                validerButton.disabled = true; // Deshabilita el botón
+                validerButton.classList.remove("enabled"); // Quita el color
+            }
+        };
+        titreInput.addEventListener("input", validateForm);
+        categorieInput.addEventListener("change", validateForm);
+        fileInput.addEventListener("change", validateForm);
+
         formAjout.addEventListener("submit", event => {
             event.preventDefault();
-            const titreInput = document.getElementById("text-titre");
-            const categorieInput = document.getElementById("categorie-text");
 
             if (!titreInput.value || !categorieInput.value || !fileInput.files[0]) {
                 alert("Veuillez remplir tous les champs et ajouter une image.");
@@ -285,6 +304,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     `;
                     gallery.appendChild(newFigure);
                     alert("Projet ajouté avec succès !");
+                    formAjout.reset();
+                    validateForm(); // Vuelve a deshabilitar el botón
                 })
                 .catch(() => alert("Une erreur est survenue lors de l'envoi du projet."));
         });
