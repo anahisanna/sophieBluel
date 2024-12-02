@@ -309,8 +309,7 @@ button {
 }
 
 button:hover {
-	background-color: #1D6154;
-	color: white;
+	cursor: pointer;
 }
 
 #filters button.active {

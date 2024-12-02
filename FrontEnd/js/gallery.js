@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 gallery.innerHTML = "";
                 works.forEach(travail => {
                     const workElement = document.createElement("figure");
+                    workElement.setAttribute("data-id", travail.id);
                     workElement.classList.add("work-item");
                     workElement.innerHTML = `
                         <img src="${travail.imageUrl}" alt="${travail.title}">
@@ -24,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     gallery.appendChild(workElement);
                 });
             };
+
+            // Initialiser la galerie avec tous les travaux
+            if (gallery) showWorks(data);
 
             // Fonction pour filtrer les travaux
             const filterWorks = categoryId => {
@@ -47,178 +51,120 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // Initialiser la galerie avec tous les travaux
-            if (gallery) showWorks(data);
-
-            // Configuration de la galerie modale
-            const showWorksModal = works => {
-                modalGallery.innerHTML = "";
-                works.forEach(travail => {
-                    const workElement = document.createElement("div");
-                    workElement.classList.add("modal-image-wrapper");
-                    workElement.setAttribute("data-id", travail.id);
-                    workElement.innerHTML = `
-                        <img src="${travail.imageUrl}" alt="${travail.title}">
-                        <i class="fa-solid fa-trash-can trash-icon"></i>
-                    `;
-                    modalGallery.appendChild(workElement);
-                });
-
-                addDeleteEventListeners();
-            };
-
-            // Barre edition
-            const adminBar = document.getElementById("admin-bar");
-            const header = document.querySelector("header");
-            const isAuthenticated = !!localStorage.getItem("authToken");
-
-            if (isAuthenticated) {
-                adminBar.classList.remove("hidden");
-                header.classList.add("with-admin-bar");
-            } else {
-                header.classList.remove("with-admin-bar");
-            }
-
-            // Ajouter une fonctionnalité de suppression pour la modale
-            const addDeleteEventListeners = () => {
-                const trashIcons = document.querySelectorAll(".trash-icon");
-                trashIcons.forEach(icon => {
-                    icon.addEventListener("click", event => {
-                        const workElement = event.target.closest(".modal-image-wrapper");
-                        const workId = workElement.getAttribute("data-id");
-                        if (confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
-                            fetch(`http://localhost:5678/api/works/${workId}`, {
-                                method: "DELETE",
-                                headers: {
-                                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
-                                }
-                            })
-                                .then(response => {
-                                    if (response.ok) {
-                                        workElement.remove();
-                                    } else {
-                                        throw new Error("Erreur lors de la suppression du projet.");
-                                    }
-                                })
-                                .catch(error => alert("Une erreur est survenue lors de la suppression."));
-                        }
-                    });
-                });
-            };
-
             if (modalGallery) showWorksModal(data);
-
-            //Interactions avec la modale
-            const setupModals = () => {
-                const modalModifier = document.getElementById("modal-modifier");
-                const modalAjout = document.getElementById("modal-ajout");
-
-                const openModal = document.getElementById("modifier-btn");
-                if (openModal) {
-                    openModal.addEventListener("click", () => modalModifier.classList.add("modal--show"));
-                }
-
-                const closeModalModifier = document.getElementById("modal-close-modifier");
-                if (closeModalModifier) {
-                    closeModalModifier.addEventListener("click", () => modalModifier.classList.remove("modal--show"));
-                }
-
-                const ajoutPhoto = document.getElementById("add-photo");
-                if (ajoutPhoto) {
-                    ajoutPhoto.addEventListener("click", () => {
-                        modalModifier.classList.remove("modal--show");
-                        modalAjout.classList.add("modal--show");
-                    });
-                }
-
-                const closeModalAjout = document.getElementById("modal-close-ajout");
-                if (closeModalAjout) {
-                    closeModalAjout.addEventListener("click", () => modalAjout.classList.remove("modal--show"));
-                }
-
-                const retourModifier = document.getElementById("retour-modifier");
-                if (retourModifier) {
-                    retourModifier.addEventListener("click", () => {
-                        modalAjout.classList.remove("modal--show");
-                        modalModifier.classList.add("modal--show");
-                    });
-                }
-            };
-            // Permettre de fermer la modale en cliquant en dehors de celle-ci
-            document.addEventListener("click", (event) => {
-                const modalModifier = document.getElementById("modal-modifier");
-                const modalAjout = document.getElementById("modal-ajout");
-
-                if (modalModifier && modalModifier.classList.contains("modal--show")) {
-                    if (event.target === modalModifier) {
-                        modalModifier.classList.remove("modal--show");
-                    }
-                }
-
-                if (modalAjout && modalAjout.classList.contains("modal--show")) {
-                    if (event.target === modalAjout) {
-                        modalAjout.classList.remove("modal--show");
-                    }
-                }
-            });
-
-
-            setupModals();
+            return data;
         })
         .catch(error => console.error("Erreur:", error));
 
-    // Fonctionnalité de connexion
-    const logForm = document.getElementById("loginForm");
-    if (logForm) {
-        logForm.addEventListener("submit", event => {
-            event.preventDefault();
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
-
-            fetch("http://localhost:5678/api/users/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password })
-            })
-                .then(response => {
-                    if (!response.ok) throw new Error("Erreur d’authentification");
-                    return response.json();
-                })
-                .then(data => {
-                    localStorage.setItem("authToken", data.token);
-                    window.location.href = "index.html";
-                })
-                .catch(() => alert("Informations utilisateur/mot de passe incorrectes"));
-        });
-    }
-
-    // Vérifier l'authentification
-    const isAuthenticated = !!localStorage.getItem("authToken");
-    const filters = document.getElementById("filters");
-    const modifierButton = document.getElementById("modifier-btn");
-
-    // Afficher ou masquer des éléments en fonction de l'authentification
-    const authentification = () => {
-        if (isAuthenticated) {
-            if (modifierButton) modifierButton.style.display = "block";
-            if (filters) filters.style.display = "none";
-        } else {
-            if (modifierButton) modifierButton.style.display = "none";
-            if (filters) filters.style.display = "flex";
-        }
+    const resetForm = () => {
+        formAjout.reset(); // Restablece los campos del formulario
+        validerButton.disabled = true; // Desactiva el botón "Valider"
+        validerButton.classList.remove("enabled"); // Elimina cualquier estilo activo en el botón
+        imagePreview.innerHTML = ""; // Limpia la vista previa de la imagen
+        placeholderImage.style.display = ""; // Restaura la imagen de marcador de posición
+        uploadButton.style.display = ""; // Restaura el botón de carga
+        infoText.style.display = ""; // Restaura el texto informativo
     };
 
-    authentification(); // Appel initial pour configurer les éléments
-    const loginLogout = document.getElementById("loginLogout");
-    if (localStorage.getItem("authToken")) {
-        loginLogout.textContent = "logout";
-        loginLogout.href = "#";
-        loginLogout.addEventListener("click", () => {
-            localStorage.removeItem("authToken");
-            loginLogout.textContent = "login";
-            loginLogout.href = "login.html";
-            alert("Vous êtes déconnecté");
+    //Interactions avec la modale
+    const setupModals = () => {
+        const modalModifier = document.getElementById("modal-modifier");
+        const modalAjout = document.getElementById("modal-ajout");
+
+        const openModal = document.getElementById("modifier-btn");
+        if (openModal) {
+            openModal.addEventListener("click", () => modalModifier.classList.add("modal--show"));
+        }
+
+        const closeModalModifier = document.getElementById("modal-close-modifier");
+        if (closeModalModifier) {
+            closeModalModifier.addEventListener("click", () => modalModifier.classList.remove("modal--show"));
+        }
+
+        const ajoutPhoto = document.getElementById("add-photo");
+        if (ajoutPhoto) {
+            ajoutPhoto.addEventListener("click", () => {
+                modalModifier.classList.remove("modal--show");
+                modalAjout.classList.add("modal--show");
+            });
+        }
+
+        const closeModalAjout = document.getElementById("modal-close-ajout");
+        if (closeModalAjout) {
+            closeModalAjout.addEventListener("click", () => {
+                modalAjout.classList.remove("modal--show");
+                resetForm(); // Resetea el formulario al cerrar la modal
+            });
+        }
+
+        const retourModifier = document.getElementById("retour-modifier");
+        if (retourModifier) {
+            retourModifier.addEventListener("click", () => {
+                modalAjout.classList.remove("modal--show");
+                modalModifier.classList.add("modal--show");
+                resetForm();
+            });
+        }
+    };
+    // Permettre de fermer la modale en cliquant en dehors de celle-ci
+    document.addEventListener("click", (event) => {
+        const modalModifier = document.getElementById("modal-modifier");
+        const modalAjout = document.getElementById("modal-ajout");
+
+        if (modalModifier && modalModifier.classList.contains("modal--show")) {
+            if (event.target === modalModifier) {
+                modalModifier.classList.remove("modal--show");
+            }
+        }
+
+        if (modalAjout && modalAjout.classList.contains("modal--show")) {
+            if (event.target === modalAjout) {
+                modalAjout.classList.remove("modal--show");
+                resetForm();
+            }
+        }
+    });
+    setupModals();
+
+    // Ajouter une fonctionnalité de suppression pour la modale
+    const addDeleteEventListeners = () => {
+        const trashIcons = document.querySelectorAll(".trash-icon");
+        trashIcons.forEach(icon => {
+            icon.addEventListener("click", event => {
+                const workElement = event.target.closest(".modal-image-wrapper");
+                const workId = workElement.getAttribute("data-id");
+                const galleryItem = document.querySelector(`#gallery figure[data-id="${workId}"]`);
+                if (confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
+                    fetch(`http://localhost:5678/api/works/${workId}`, {
+                        method: "DELETE",
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                        }
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                workElement.remove();
+                                galleryItem.remove();
+                            } else {
+                                throw new Error("Erreur lors de la suppression du projet.");
+                            }
+                        })
+                        .catch(error => alert("Une erreur est survenue lors de la suppression."));
+                }
+            });
         });
+    };
+
+    // Barre edition
+    const adminBar = document.getElementById("admin-bar");
+    const header = document.querySelector("header");
+    const isAuthenticated = !!localStorage.getItem("authToken");
+
+    if (isAuthenticated) {
+        adminBar.classList.remove("hidden");
+        header.classList.add("with-admin-bar");
+    } else {
+        header.classList.remove("with-admin-bar");
     }
 
     // Téléchargement de photo
@@ -249,6 +195,38 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    // Configuration de la galerie modale
+    const modalGallery = document.getElementById("modal-gallery");
+    const showWorksModal = works => {
+        if (modalGallery) {
+            modalGallery.innerHTML = "";
+            works.forEach(travail => {
+                const workElement = document.createElement("div");
+                workElement.classList.add("modal-image-wrapper");
+                workElement.setAttribute("data-id", travail.id);
+                workElement.innerHTML = `
+                <img src="${travail.imageUrl}" alt="${travail.title}">
+                <i class="fa-solid fa-trash-can trash-icon"></i>
+            `;
+                modalGallery.appendChild(workElement);
+            });
+
+            addDeleteEventListeners();
+        }
+    };
+
+    const updateModalGallery = () => {
+        fetch("http://localhost:5678/api/works")
+            .then((response) => {
+                if (!response.ok) throw new Error("Erreur lors de la récupération des travaux.");
+                return response.json();
+            })
+            .then((works) => {
+                showWorksModal(works);
+            })
+            .catch((error) => console.error("Erreur lors de la mise à jour de la galerie modale :", error));
+    };
 
     // Ajouter un nouveau travail
     const formAjout = document.getElementById("form-ajout");
@@ -297,6 +275,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     return response.json();
                 })
                 .then(newProject => {
+                    // reset upload div
+                    document.getElementById("upload-button").style.display = "flex";
+                    document.getElementById("image-preview").innerHTML = "";
+                    document.querySelector(".background-photo img").style.display = "flex";
+                    document.getElementById("jpg-size").style.display = "flex";
+                    // mettre à jour la galerie dans la modal
+                    updateModalGallery();
+                    // ajout du nouveau projet dans le portfolio
                     const newFigure = document.createElement("figure");
                     newFigure.innerHTML = `
                         <img src="${newProject.imageUrl}" alt="${newProject.title}">
@@ -307,7 +293,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     formAjout.reset();
                     validateForm(); // Vuelve a deshabilitar el botón
                 })
-                .catch(() => alert("Une erreur est survenue lors de l'envoi du projet."));
+                .catch(() => {
+                    alert("Une erreur est survenue lors de l'envoi du projet.");
+                    formAjout.reset();
+                });
         });
     }
 });
+
