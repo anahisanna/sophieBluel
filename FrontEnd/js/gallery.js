@@ -57,13 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => console.error("Erreur:", error));
 
     const resetForm = () => {
-        formAjout.reset(); // Restablece los campos del formulario
-        validerButton.disabled = true; // Desactiva el botón "Valider"
-        validerButton.classList.remove("enabled"); // Elimina cualquier estilo activo en el botón
-        imagePreview.innerHTML = ""; // Limpia la vista previa de la imagen
-        placeholderImage.style.display = ""; // Restaura la imagen de marcador de posición
-        uploadButton.style.display = ""; // Restaura el botón de carga
-        infoText.style.display = ""; // Restaura el texto informativo
+        formAjout.reset();
+        validerButton.disabled = true;
+        validerButton.classList.remove("enabled");
+        imagePreview.innerHTML = "";
+        placeholderImage.style.display = "";
+        uploadButton.style.display = "";
+        infoText.style.display = "";
     };
 
     //Interactions avec la modale
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (closeModalAjout) {
             closeModalAjout.addEventListener("click", () => {
                 modalAjout.classList.remove("modal--show");
-                resetForm(); // Resetea el formulario al cerrar la modal
+                resetForm();
             });
         }
 
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     setupModals();
 
-    // Ajouter une fonctionnalité de suppression pour la modale
+    // Ajout une fonctionnalité de suppression pour la modale
     const addDeleteEventListeners = () => {
         const trashIcons = document.querySelectorAll(".trash-icon");
         trashIcons.forEach(icon => {
@@ -236,16 +236,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (formAjout) {
         const validateForm = () => {
-            const isTitleValid = titreInput.value.trim() !== ""; // Título no vacío
-            const isCategoryValid = categorieInput.value !== ""; // Categoría seleccionada
-            const isFileValid = fileInput.files.length > 0; // Archivo seleccionado
+            const isTitleValid = titreInput.value.trim() !== "";
+            const isCategoryValid = categorieInput.value !== "";
+            const isFileValid = fileInput.files.length > 0;
 
             if (isTitleValid && isCategoryValid && isFileValid) {
-                validerButton.disabled = false; // Habilita el botón
-                validerButton.classList.add("enabled"); // Cambia el color
+                validerButton.disabled = false;
+                validerButton.classList.add("enabled");
             } else {
-                validerButton.disabled = true; // Deshabilita el botón
-                validerButton.classList.remove("enabled"); // Quita el color
+                validerButton.disabled = true;
+                validerButton.classList.remove("enabled");
             }
         };
         titreInput.addEventListener("input", validateForm);
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     gallery.appendChild(newFigure);
                     alert("Projet ajouté avec succès !");
                     formAjout.reset();
-                    validateForm(); // Vuelve a deshabilitar el botón
+                    validateForm();
                 })
                 .catch(() => {
                     alert("Une erreur est survenue lors de l'envoi du projet.");
