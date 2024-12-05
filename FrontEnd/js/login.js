@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
+            if (!email || !password) {
+                alert("Veuillez remplir tous les champs et ajouter une image.");
+                return;
+            }
 
             fetch("http://localhost:5678/api/users/login", {
                 method: "POST",
